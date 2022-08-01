@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.UUID;
 
 @FeignClient(name = "persona-service", configuration = PersonaClientConfig.class,
-        path = "/persons")
+        path = "/personas")
 public interface PersonaClient {
 
     @GetMapping("/{id}")

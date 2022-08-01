@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/images")
+@RequestMapping("/imagenes")
 public class ImagenController {
 
     @Autowired
@@ -25,7 +25,7 @@ public class ImagenController {
         return ResponseEntity.ok(service.getAll());
     }
 
-    @GetMapping("/{persona}")
+    @GetMapping("/persona/{persona}")
     public ResponseEntity<List<ImagenDto>> getAllByPersona(@PathVariable UUID persona) {
         return ResponseEntity.ok(service.getAllByPersona(persona));
     }

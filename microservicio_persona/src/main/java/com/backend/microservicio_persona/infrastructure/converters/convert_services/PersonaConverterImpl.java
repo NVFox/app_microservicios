@@ -37,7 +37,24 @@ public class PersonaConverterImpl implements PersonaConverter {
 
     @Override
     public void update(UUID id, PersonaDto entity) {
-        service.update(id, mapper.toBaseObject(entity));
+        Persona previousEntity = service.getById(id);
+
+        Persona newEntity = Persona.builder()
+                .nombre(entity.getNombre() != null
+                        ? entity.getNombre()
+                        : previousEntity.getNombre())
+                .apellido(entity.getApellido() != null
+                        ? entity.getApellido()
+                        : previousEntity.getApellido())
+                .sexo(entity.getSexo() != null
+                        ? entity.getSexo()
+                        : previousEntity.getSexo())
+                .edad(entity.getEdad() != null
+                        ? entity.getEdad()
+                        : previousEntity.getEdad())
+                .build();
+
+        service.update(id, newEntity);
     }
 
     @Override

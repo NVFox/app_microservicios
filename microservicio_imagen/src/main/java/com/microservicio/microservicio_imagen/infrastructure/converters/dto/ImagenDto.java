@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
+import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,6 +25,6 @@ public @Data class ImagenDto {
             message = "Nombre no puede ser nulo")
     private String archivo;
 
-    private Integer persona;
+    private UUID persona;
 
 }
