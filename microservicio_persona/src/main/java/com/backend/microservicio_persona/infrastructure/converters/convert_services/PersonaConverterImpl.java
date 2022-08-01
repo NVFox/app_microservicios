@@ -37,7 +37,7 @@ public class PersonaConverterImpl implements PersonaConverter {
 
     @Override
     public void update(UUID id, PersonaDto entity) {
-        service.update(mapper.toBaseObject(entity));
+        service.update(id, mapper.toBaseObject(entity));
     }
 
     @Override

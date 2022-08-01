@@ -10,7 +10,7 @@ public interface PersonaService<T, ID> {
 
     T create(T entity);
 
-    void update(T entity);
+    void update(ID id, T entity);
 
     void delete(ID id);
 
