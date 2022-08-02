@@ -73,8 +73,6 @@ public class ImagenServiceImpl implements ImagenService<Imagen, String> {
 
     @Override
     public void deleteByPersona(UUID id) {
-        personaClient.getById(id);
         repository.deleteImagenByPersona(id);
     }
-
 }
