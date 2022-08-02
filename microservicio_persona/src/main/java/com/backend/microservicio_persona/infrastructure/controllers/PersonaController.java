@@ -1,5 +1,6 @@
 package com.backend.microservicio_persona.infrastructure.controllers;
 
+import com.backend.microservicio_persona.application.exceptions.InvalidDataException;
 import com.backend.microservicio_persona.infrastructure.converters.convert_services.PersonaConverter;
 import com.backend.microservicio_persona.infrastructure.converters.dto.PersonaDto;
 import com.backend.microservicio_persona.infrastructure.converters.validation.OnCreate;
@@ -7,6 +8,7 @@ import com.backend.microservicio_persona.infrastructure.converters.validation.On
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,8 +34,12 @@ public class PersonaController {
 
     @PostMapping
     public ResponseEntity<PersonaDto> create(
-            @RequestBody @Validated(OnCreate.class) PersonaDto entity
+            @RequestBody @Validated(OnCreate.class) PersonaDto entity,
+            BindingResult result
     ) {
+        if (result.hasErrors())
+            throw new InvalidDataException(result);
+
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(service.create(entity));
     }
@@ -41,8 +47,12 @@ public class PersonaController {
     @PutMapping("/{id}")
     public ResponseEntity<Void> update(
             @PathVariable UUID id,
-            @RequestBody @Validated(OnUpdate.class) PersonaDto entity
+            @RequestBody @Validated(OnUpdate.class) PersonaDto entity,
+            BindingResult result
     ) {
+        if (result.hasErrors())
+            throw new InvalidDataException(result);
+
         service.update(id, entity);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
