@@ -1,5 +1,6 @@
 package com.microservicio.microservicio_imagen.application.clients;
 
+import com.microservicio.microservicio_imagen.application.clients.config.PersonaClientConfig;
 import com.microservicio.microservicio_imagen.domain.model.Persona;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;

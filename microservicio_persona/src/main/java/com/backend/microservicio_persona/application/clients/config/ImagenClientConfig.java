@@ -1,8 +1,8 @@
-package com.microservicio.microservicio_imagen.application.clients;
+package com.backend.microservicio_persona.application.clients.config;
 
 import org.springframework.context.annotation.Bean;
 
-public class PersonaClientConfig {
+public class ImagenClientConfig {
 
     @Bean
     public CustomErrorDecoder customErrorDecoder() {

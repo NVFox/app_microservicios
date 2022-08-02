@@ -17,4 +17,6 @@ public interface ImagenService<T, ID> {
 
     void delete(ID id);
 
+    void deleteByPersona(UUID id);
+
 }

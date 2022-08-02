@@ -1,8 +1,7 @@
-package com.microservicio.microservicio_imagen.application.clients;
+package com.backend.microservicio_persona.application.clients.config;
 
-import com.microservicio.microservicio_imagen.application.exceptions.ClientErrorException;
-import com.microservicio.microservicio_imagen.application.exceptions.NoSuchElementException;
-import com.microservicio.microservicio_imagen.application.exceptions.ServerErrorException;
+import com.backend.microservicio_persona.application.exceptions.ClientErrorException;
+import com.backend.microservicio_persona.application.exceptions.ServerErrorException;
 import feign.Response;
 import feign.codec.ErrorDecoder;
 

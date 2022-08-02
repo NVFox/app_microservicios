@@ -12,4 +12,6 @@ public interface ImagenRepository extends MongoRepository<Imagen, String> {
 
     List<Imagen> findByPersona(UUID id);
 
+    Long deleteImagenByPersona(UUID id);
+
 }

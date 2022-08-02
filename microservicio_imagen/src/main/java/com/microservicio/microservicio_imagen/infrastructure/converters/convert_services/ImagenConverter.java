@@ -22,4 +22,6 @@ public interface ImagenConverter {
 
     void delete(String id);
 
+    void deleteByPersona(UUID id);
+
 }

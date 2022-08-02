@@ -1,5 +1,6 @@
 package com.backend.microservicio_persona.application.interceptors;
 
+import com.backend.microservicio_persona.application.clients.ImagenClient;
 import com.backend.microservicio_persona.application.exceptions.NoChangeDetectedException;
 import com.backend.microservicio_persona.application.exceptions.NoSuchElementException;
 import com.backend.microservicio_persona.application.exceptions.NotEnoughAgeException;
@@ -19,6 +20,9 @@ public class PersonaServiceImpl implements PersonaService<Persona, UUID> {
 
     @Autowired
     private PersonaRepository repository;
+
+    @Autowired
+    private ImagenClient imagenClient;
 
     @Override
     public List<Persona> getAll() {
@@ -63,6 +67,7 @@ public class PersonaServiceImpl implements PersonaService<Persona, UUID> {
             throw new NoSuchElementException();
 
         repository.deleteById(id);
+        imagenClient.deleteByPersona(id);
     }
 
 }

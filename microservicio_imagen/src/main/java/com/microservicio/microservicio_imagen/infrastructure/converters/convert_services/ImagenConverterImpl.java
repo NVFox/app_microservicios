@@ -76,4 +76,9 @@ public class ImagenConverterImpl implements ImagenConverter {
     public void delete(String id) {
         service.delete(id);
     }
+
+    @Override
+    public void deleteByPersona(UUID id) {
+        service.deleteByPersona(id);
+    }
 }

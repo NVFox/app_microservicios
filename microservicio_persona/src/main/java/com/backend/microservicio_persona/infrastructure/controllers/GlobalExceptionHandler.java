@@ -9,6 +9,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
 
 import java.io.IOException;
@@ -33,6 +34,22 @@ public class GlobalExceptionHandler {
                 message("Err-(002/003): El elemento a modificar no existe").timestamp(new Date()).build();
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
+    @ExceptionHandler(ClientErrorException.class)
+    public ResponseEntity<ErrorResponse> ClientErrorExceptionHandler(ClientErrorException ex) {
+        ErrorResponse response = ErrorResponse.builder().status(ex.getStatus()).
+                message(ex.getMessage()).timestamp(new Date()).build();
+
+        return ResponseEntity.status(ex.getStatus()).body(response);
+    }
+
+    @ExceptionHandler(ServerErrorException.class)
+    public ResponseEntity<ErrorResponse> ServerErrorExceptionHandler(ServerErrorException ex) {
+        ErrorResponse response = ErrorResponse.builder().status(ex.getStatus()).
+                message(ex.getMessage()).timestamp(new Date()).build();
+
+        return ResponseEntity.status(ex.getStatus()).body(response);
     }
 
     @ExceptionHandler(NotEnoughAgeException.class)
@@ -85,6 +102,15 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> IllegalArgumentExceptionHandler(IllegalArgumentException ex) {
         ErrorResponse response = ErrorResponse.builder().status(HttpStatus.BAD_REQUEST.value()).
                 message("Err-005: Los parámetros pasados no son válidos")
+                .timestamp(new Date()).build();
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<ErrorResponse> MethodArgumentTypeMismatchExceptionHandler(MethodArgumentTypeMismatchException ex) {
+        ErrorResponse response = ErrorResponse.builder().status(HttpStatus.BAD_REQUEST.value()).
+                message("Err-018: El parámetro de la url está en un formato inválido")
                 .timestamp(new Date()).build();
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);

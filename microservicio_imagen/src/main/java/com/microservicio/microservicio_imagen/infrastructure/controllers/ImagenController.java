@@ -60,4 +60,9 @@ public class ImagenController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
 
+    @DeleteMapping("/persona/{persona}")
+    public ResponseEntity<Void> deleteByPersona(@PathVariable UUID persona) {
+        service.deleteByPersona(persona);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+    }
 }
